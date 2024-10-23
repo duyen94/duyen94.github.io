@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Công Nhân Samsung</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --samsung-blue: #1428a0;
+            --samsung-light-blue: #1434cb;
+            --text-color: #333;
+            --light-bg: #f5f6fa;
+            --section-padding: 4rem 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(rgba(20, 40, 160, 0.9), rgba(20, 52, 203, 0.85)), url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            border: 4px solid white;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .years {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            margin-top: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: var(--section-padding);
+            background-color: var(--light-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--samsung-blue);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--samsung-blue);
+            margin: 1rem auto;
+        }
+
+        .achievement-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .achievement-icon {
+            font-size: 2.5rem;
+            color: var(--samsung-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Experience Timeline */
+        .experience {
+            padding: var(--section-padding);
+            background: white;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            padding: 2rem;
+            background: var(--light-bg);
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            position: relative;
+            border-left: 4px solid var(--samsung-blue);
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: var(--section-padding);
+            background: var(--light-bg);
+        }
+
+        .skill-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .skill-category h3 {
+            color: var(--samsung-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .skill-list li::before {
+            content: '✓';
+            color: var(--samsung-blue);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Certificates Section */
+        .certificates {
+            padding: var(--section-padding);
+        }
+
+        .certificate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .certificate-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--samsung-blue);
+        }
+
+        .certificate-card h3 {
+            color: var(--samsung-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: var(--section-padding);
+            background: var(--samsung-blue);
+            color: white;
+            text-align: center;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact .section-title::after {
+            background-color: white;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info p {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2rem;
+            }
+
+            .title {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .delayed {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="profile-image">
+                <img src="/images/avatar.png" alt="Ảnh đại diện">
+            </div>
+            <h1 class="name">Nhâm Thị Duyên</h1>
+            <p class="title">Chuyên viên Sản xuất Cao cấp - Samsung Electronics Vietnam</p>
+            <div class="years">10+ Năm Kinh Nghiệm</div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Thành Tựu Nổi Bật</h2>
+            <div class="achievement-cards">
+                <div class="achievement-card delayed">
+                    <div class="achievement-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Nhân viên Xuất sắc</h3>
+                    <p>5 lần đạt danh hiệu nhân viên xuất sắc của tháng</p>
+                </div>
+                <div class="achievement-card delayed">
+                    <div class="achievement-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Mentor</h3>
+                    <p>Đào tạo hơn 50 nhân viên mới</p>
+                </div>
+                <div class="achievement-card delayed">
+                    <div class="achievement-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Cải Tiến</h3>
+                    <p>Đề xuất 15+ cải tiến quy trình được áp dụng</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <h2 class="section-title">Kinh Nghiệm Làm Việc</h2>
+            <div class="timeline">
+                <div class="timeline-item delayed">
+                    <h3>Chuyên viên Sản xuất Cao cấp</h3>
+                    <p>Samsung Electronics Vietnam | 2020 - Hiện tại</p>
+                    <ul>
+                        <li>Phụ trách dây chuyền sản xuất điện thoại cao cấp</li>
+                        <li>Đào tạo và hướng dẫn nhân viên mới</li>
+                        <li>Đóng góp vào việc cải tiến quy trình sản xuất</li>
+                    </ul>
+                </div>
+                <div class="timeline-item delayed">
+                    <h3>Chuyên viên Sản xuất</h3>
+                    <p>Samsung Electronics Vietnam | 2015 - 2020</p>
+                    <ul>
+                        <li>Vận hành máy móc và thiết bị sản xuất</li>
+                        <li>Kiểm tra chất lượng sản phẩm</li>
+                        <li>Thực hiện các quy trình an toàn lao động</li>
+                    </ul>
+                </div>
+                <div class="timeline-item delayed">
+                    <h3>Nhân viên Sản xuất</h3>
+                    <p>Samsung Electronics Vietnam | 2013 - 2015</p>
+                    <ul>
+                        <li>Lắp ráp linh kiện điện tử</li>
+                        <li>Học hỏi quy trình sản xuất cơ bản</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title">Kỹ Năng Chuyên Môn</h2>
+            <div class="skill-categories">
+                <div class="skill-category delayed">
+                    <h3>Kỹ Năng Sản Xuất</h3>
+                    <ul class="skill-list">
+                        <li>Vận hành dây chuyền sản xuất điện thoại</li>
+                        <li>Kiểm soát chất lượng sản phẩm</li>
+                        <li>Bảo trì thiết bị cơ bản</li>
+                        <li>Quy trình 5S trong sản xuất</li>
+                    </ul>
+                </div>
+                <div class="skill-category delayed">
+                    <h3>Kỹ Năng Quản Lý</h3>
+                    <ul class="skill-list">
+                        <li>Hướng dẫn nhân viên mới</li>
+                        <li>Quản lý nhóm sản xuất</li>
+                        <li>Báo cáo hiệu suất sản xuất</li>
+                        <li>Đề xuất cải tiến quy trình</li>
+                    </ul>
+                </div>
+                <div class="skill-category delayed">
+                    <h3>Kỹ Năng An Toàn</h3>
+                    <ul class="skill-list">
+                        <li>An toàn lao động trong sản xuất</li>
+                        <li>Sơ cấp cứu cơ bản</li>
+                        <li>Phòng cháy chữa cháy</li>
+                        <li>Xử lý tình huống khẩn cấp</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section class="certificates" id="certificates">
+        <div class="container">
+            <h2 class="section-title">Chứng Chỉ & Giấy Khen</h2>
+            <div class="certificate-grid">
+                <div class="certificate-card delayed">
+                    <h3>Chứng nhận An toàn Lao động</h3>
+                    <p>Cấp bởi: Sở Lao động - Thương binh và Xã hội</p>
+                    <p>Năm: 2022</p>
+                </div>
+                <div class="certificate-card delayed">
+                    <h3>Chứng chỉ Quản lý Chất lượng</h3>
+                    <p>Cấp bởi: Samsung Electronics Vietnam</p>
+                    <p>Năm: 2021</p>
+                </div>
+                <div class="certificate-card delayed">
+                    <h3>Giấy khen Thành tích Xuất sắc</h3>
+                    <p>Cấp bởi: Samsung Electronics Vietnam</p>
+                    <p>Năm: 2020, 2021, 2022</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Thông Tin Liên Hệ</h2>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> 0377.833.xxx</p>
+                <p><i class="fas fa-envelope"></i> ngocduyen94.loverain@gmail.com </p>
+                <p><i class="fas fa-map-marker-alt"></i> Yên Phong, Bắc Ninh</p>
+                <p><i class="fas fa-building"></i> Samsung Electronics Vietnam</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Animation khi scroll
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '50px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const elements = entry.target.querySelectorAll('.delayed');
+                    elements.forEach((element, index) => {
+                        setTimeout(() => {
+                            element.classList.add('animate');
+                            element.classList.remove('delayed');
+                        }, index * 200);
+                    });
+                    if (entry.target.classList.contains('delayed')) {
+                        entry.target.classList.add('animate');
+                        entry.target.classList.remove('delayed');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Quan sát tất cả các section và các phần tử có class 'delayed'
+        document.querySelectorAll('section, .delayed').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Smooth scroll cho các links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Hiệu ứng hover cho các cards
+        document.querySelectorAll('.achievement-card, .certificate-card, .skill-category').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Thêm hiệu ứng loading cho profile image
+        window.addEventListener('load', function() {
+            document.querySelector('.profile-image').style.opacity = '1';
+            document.querySelector('.profile-image').style.transform = 'scale(1)';
+        });
+    </script>
+</body>
+</html>
